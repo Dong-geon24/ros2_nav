@@ -39,8 +39,24 @@ def generate_launch_description():
     start_gazebo_client_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py'))
     )
-    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    print(world_file_name,world_path)
+
+    # doc = xacro.parse(open(urdf_file))
+    # xacro.process_doc(doc)
+    # robot_description={'robot_description':doc.toxml()}
+
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        output='screen',
+        parameters=[{'robot_description': urdf_file}]
+    )
+
+    joint_state_publisher = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher'
+    )
+
 
     spawn_entity = Node(
         package='gazebo_ros',
@@ -53,6 +69,8 @@ def generate_launch_description():
             start_gazebo_server_cmd,
             start_gazebo_client_cmd,
             spawn_entity,
+            robot_state_publisher_node,
+            joint_state_publisher
             
         ]
     )
