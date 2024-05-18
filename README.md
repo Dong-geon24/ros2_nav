@@ -2,7 +2,7 @@
 
 ## gazebo start & spawn robot
 
-    gazebo --verbose -s libgazebo_ros_factory.so
+    gazebo --verbose -s libgazebo_ros_init.so -s libgazebo_ros_factory.so
     ros2 run gazebo_ros spawn_entity.py -entity  skidbot -file ./src/my_robot/description/skidbot.urdf
     ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r __ns:=/skidbot
 
