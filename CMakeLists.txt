@@ -16,6 +16,20 @@ find_package(tf2_ros REQUIRED)
 find_package(robot_state_publisher REQUIRED)
 find_package(gazebo_ros REQUIRED)
 
+# Install launch files
+install(DIRECTORY launch/
+  DESTINATION share/${PROJECT_NAME}/launch
+)
+
+# Install URDF and other files
+install(DIRECTORY description/
+  DESTINATION share/${PROJECT_NAME}/description
+)
+
+install(DIRECTORY worlds/
+  DESTINATION share/${PROJECT_NAME}/worlds
+)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -27,5 +41,6 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
 
 ament_package()
