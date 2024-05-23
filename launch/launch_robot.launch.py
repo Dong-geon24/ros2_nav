@@ -59,7 +59,7 @@ def generate_launch_description():
         package='gazebo_ros',
         executable='spawn_entity.py',
         output='screen',
-        arguments=['-entity','skidbot','-file',urdf_file]
+        arguments=['-entity','cap','-file',urdf_file]
     )
 
     # rviz_start = ExecuteProcess(
